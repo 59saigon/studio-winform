@@ -80,6 +80,7 @@
       <DependentUpon>HomeFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\FileName.cs" />
+    <Compile Include="Models\Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmFilter.resx">
