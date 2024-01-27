@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HomeService_NhuMyStudio
 {
-    public partial class Form1 : Form
+    public partial class frmRename : Form
     {
-        public Form1()
+        public frmRename()
         {
             InitializeComponent();
         }
