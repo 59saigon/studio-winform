@@ -34,33 +34,33 @@
             this.btnNewFolder = new ReaLTaiizor.Controls.MaterialButton();
             this.btnRestart = new ReaLTaiizor.Controls.NightButton();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtNewFolder = new ReaLTaiizor.Controls.SkyTextBox();
             this.dgvNewFolder = new System.Windows.Forms.DataGridView();
             this.txtSearch = new ReaLTaiizor.Controls.SkyTextBox();
             this.parrotGradientPanel2 = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            this.txtNewFolder = new ReaLTaiizor.Controls.SkyTextBox();
             this.btnFolder = new ReaLTaiizor.Controls.MaterialButton();
             this.txtFolder = new ReaLTaiizor.Controls.SkyTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.metroLabel2 = new ReaLTaiizor.Controls.MetroLabel();
+            this.btnSelectAll = new ReaLTaiizor.Controls.MaterialButton();
+            this.btnRemoveAll = new ReaLTaiizor.Controls.MaterialButton();
+            this.metroLabel3 = new ReaLTaiizor.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFolder)).BeginInit();
             this.parrotGradientPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNewFolder)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.parrotGradientPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroLabel1
             // 
-            this.metroLabel1.Font = new System.Drawing.Font("Segoe Script", 18.27692F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroLabel1.Font = new System.Drawing.Font("Cascadia Mono", 18.27692F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroLabel1.IsDerivedStyle = true;
-            this.metroLabel1.Location = new System.Drawing.Point(62, 40);
+            this.metroLabel1.Location = new System.Drawing.Point(125, 71);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(371, 64);
+            this.metroLabel1.Size = new System.Drawing.Size(342, 52);
             this.metroLabel1.Style = ReaLTaiizor.Enum.Metro.Style.Light;
             this.metroLabel1.StyleManager = null;
             this.metroLabel1.TabIndex = 1;
-            this.metroLabel1.Text = "DANH SÁCH FILE";
+            this.metroLabel1.Text = "Folder gốc";
             this.metroLabel1.ThemeAuthor = "Taiizor";
             this.metroLabel1.ThemeName = "MetroLight";
             // 
@@ -108,12 +108,12 @@
             this.btnNewFolder.HighEmphasis = true;
             this.btnNewFolder.Icon = null;
             this.btnNewFolder.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btnNewFolder.Location = new System.Drawing.Point(-10, 26);
+            this.btnNewFolder.Location = new System.Drawing.Point(491, 6);
             this.btnNewFolder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNewFolder.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.btnNewFolder.Name = "btnNewFolder";
             this.btnNewFolder.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnNewFolder.Size = new System.Drawing.Size(226, 36);
+            this.btnNewFolder.Size = new System.Drawing.Size(135, 36);
             this.btnNewFolder.TabIndex = 8;
             this.btnNewFolder.Text = "Lưu tại...";
             this.btnNewFolder.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -165,14 +165,27 @@
             this.parrotGradientPanel1.TopLeft = System.Drawing.Color.DeepSkyBlue;
             this.parrotGradientPanel1.TopRight = System.Drawing.Color.Fuchsia;
             // 
-            // panel2
+            // txtNewFolder
             // 
-            this.panel2.Controls.Add(this.txtNewFolder);
-            this.panel2.Controls.Add(this.btnNewFolder);
-            this.panel2.Location = new System.Drawing.Point(696, 33);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 100);
-            this.panel2.TabIndex = 13;
+            this.txtNewFolder.BackColor = System.Drawing.Color.MistyRose;
+            this.txtNewFolder.BaseColor = System.Drawing.Color.Transparent;
+            this.txtNewFolder.BorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtNewFolder.BorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.txtNewFolder.BorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.txtNewFolder.BorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(254)))));
+            this.txtNewFolder.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
+            this.txtNewFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.txtNewFolder.Location = new System.Drawing.Point(491, 43);
+            this.txtNewFolder.MaxLength = 32767;
+            this.txtNewFolder.MultiLine = false;
+            this.txtNewFolder.Name = "txtNewFolder";
+            this.txtNewFolder.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.txtNewFolder.Size = new System.Drawing.Size(405, 25);
+            this.txtNewFolder.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.txtNewFolder.TabIndex = 24;
+            this.txtNewFolder.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtNewFolder.UnknownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.txtNewFolder.UseSystemPasswordChar = false;
             // 
             // dgvNewFolder
             // 
@@ -212,6 +225,8 @@
             this.parrotGradientPanel2.BottomLeft = System.Drawing.Color.LightBlue;
             this.parrotGradientPanel2.BottomRight = System.Drawing.Color.LightPink;
             this.parrotGradientPanel2.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            this.parrotGradientPanel2.Controls.Add(this.btnFolder);
+            this.parrotGradientPanel2.Controls.Add(this.btnNewFolder);
             this.parrotGradientPanel2.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.parrotGradientPanel2.Location = new System.Drawing.Point(0, -4);
             this.parrotGradientPanel2.Name = "parrotGradientPanel2";
@@ -225,28 +240,6 @@
             this.parrotGradientPanel2.TopLeft = System.Drawing.Color.DeepSkyBlue;
             this.parrotGradientPanel2.TopRight = System.Drawing.Color.Fuchsia;
             // 
-            // txtNewFolder
-            // 
-            this.txtNewFolder.BackColor = System.Drawing.Color.Pink;
-            this.txtNewFolder.BaseColor = System.Drawing.Color.Transparent;
-            this.txtNewFolder.BorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.txtNewFolder.BorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.txtNewFolder.BorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.txtNewFolder.BorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(254)))));
-            this.txtNewFolder.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
-            this.txtNewFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
-            this.txtNewFolder.Location = new System.Drawing.Point(0, 71);
-            this.txtNewFolder.MaxLength = 32767;
-            this.txtNewFolder.MultiLine = false;
-            this.txtNewFolder.Name = "txtNewFolder";
-            this.txtNewFolder.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.txtNewFolder.Size = new System.Drawing.Size(200, 25);
-            this.txtNewFolder.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.txtNewFolder.TabIndex = 24;
-            this.txtNewFolder.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtNewFolder.UnknownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
-            this.txtNewFolder.UseSystemPasswordChar = false;
-            // 
             // btnFolder
             // 
             this.btnFolder.AutoSize = false;
@@ -256,12 +249,12 @@
             this.btnFolder.HighEmphasis = true;
             this.btnFolder.Icon = null;
             this.btnFolder.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btnFolder.Location = new System.Drawing.Point(-18, 26);
+            this.btnFolder.Location = new System.Drawing.Point(25, 6);
             this.btnFolder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnFolder.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.btnFolder.Name = "btnFolder";
             this.btnFolder.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnFolder.Size = new System.Drawing.Size(239, 36);
+            this.btnFolder.Size = new System.Drawing.Size(135, 36);
             this.btnFolder.TabIndex = 4;
             this.btnFolder.Text = "Mở folder";
             this.btnFolder.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -271,7 +264,7 @@
             // 
             // txtFolder
             // 
-            this.txtFolder.BackColor = System.Drawing.Color.Pink;
+            this.txtFolder.BackColor = System.Drawing.Color.MistyRose;
             this.txtFolder.BaseColor = System.Drawing.Color.Transparent;
             this.txtFolder.BorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.txtFolder.BorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
@@ -279,38 +272,91 @@
             this.txtFolder.BorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(254)))), ((int)(((byte)(254)))));
             this.txtFolder.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
             this.txtFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
-            this.txtFolder.Location = new System.Drawing.Point(0, 71);
+            this.txtFolder.Location = new System.Drawing.Point(25, 43);
             this.txtFolder.MaxLength = 32767;
             this.txtFolder.MultiLine = false;
             this.txtFolder.Name = "txtFolder";
             this.txtFolder.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.txtFolder.Size = new System.Drawing.Size(199, 25);
+            this.txtFolder.Size = new System.Drawing.Size(441, 25);
             this.txtFolder.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.txtFolder.TabIndex = 23;
             this.txtFolder.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtFolder.UnknownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
             this.txtFolder.UseSystemPasswordChar = false;
             // 
-            // panel1
+            // metroLabel2
             // 
-            this.panel1.Controls.Add(this.txtFolder);
-            this.panel1.Controls.Add(this.btnFolder);
-            this.panel1.Location = new System.Drawing.Point(491, 33);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(199, 100);
-            this.panel1.TabIndex = 12;
+            this.metroLabel2.Font = new System.Drawing.Font("Segoe UI", 7.753846F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroLabel2.IsDerivedStyle = true;
+            this.metroLabel2.Location = new System.Drawing.Point(25, 413);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(327, 39);
+            this.metroLabel2.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            this.metroLabel2.StyleManager = null;
+            this.metroLabel2.TabIndex = 23;
+            this.metroLabel2.Text = "Lưu ý: Dùng phím cách để chuyển ảnh ( một hoặc nhiều file ảnh )";
+            this.metroLabel2.ThemeAuthor = "Taiizor";
+            this.metroLabel2.ThemeName = "MetroLight";
             // 
-            // btnDelete
+            // btnSelectAll
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.Pink;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.969231F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(740, 411);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(156, 38);
-            this.btnDelete.TabIndex = 22;
-            this.btnDelete.Text = "Cúc!!!";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnSelectAll.AutoSize = false;
+            this.btnSelectAll.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSelectAll.BackColor = System.Drawing.Color.Pink;
+            this.btnSelectAll.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnSelectAll.Depth = 0;
+            this.btnSelectAll.HighEmphasis = true;
+            this.btnSelectAll.Icon = null;
+            this.btnSelectAll.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            this.btnSelectAll.Location = new System.Drawing.Point(359, 410);
+            this.btnSelectAll.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSelectAll.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnSelectAll.Size = new System.Drawing.Size(107, 36);
+            this.btnSelectAll.TabIndex = 24;
+            this.btnSelectAll.Text = "Chọn hết";
+            this.btnSelectAll.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.btnSelectAll.UseAccentColor = false;
+            this.btnSelectAll.UseVisualStyleBackColor = false;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // btnRemoveAll
+            // 
+            this.btnRemoveAll.AutoSize = false;
+            this.btnRemoveAll.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRemoveAll.BackColor = System.Drawing.Color.Pink;
+            this.btnRemoveAll.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnRemoveAll.Depth = 0;
+            this.btnRemoveAll.HighEmphasis = true;
+            this.btnRemoveAll.Icon = null;
+            this.btnRemoveAll.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            this.btnRemoveAll.Location = new System.Drawing.Point(789, 410);
+            this.btnRemoveAll.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnRemoveAll.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            this.btnRemoveAll.Name = "btnRemoveAll";
+            this.btnRemoveAll.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnRemoveAll.Size = new System.Drawing.Size(107, 36);
+            this.btnRemoveAll.TabIndex = 25;
+            this.btnRemoveAll.Text = "Xóa hết";
+            this.btnRemoveAll.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.btnRemoveAll.UseAccentColor = false;
+            this.btnRemoveAll.UseVisualStyleBackColor = false;
+            this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.Font = new System.Drawing.Font("Cascadia Mono", 18.27692F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroLabel3.IsDerivedStyle = true;
+            this.metroLabel3.Location = new System.Drawing.Point(554, 71);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(342, 52);
+            this.metroLabel3.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            this.metroLabel3.StyleManager = null;
+            this.metroLabel3.TabIndex = 26;
+            this.metroLabel3.Text = "Folder mới";
+            this.metroLabel3.ThemeAuthor = "Taiizor";
+            this.metroLabel3.ThemeName = "MetroLight";
             // 
             // frmFilter
             // 
@@ -318,12 +364,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(925, 527);
-            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.txtNewFolder);
+            this.Controls.Add(this.btnRemoveAll);
+            this.Controls.Add(this.txtFolder);
+            this.Controls.Add(this.btnSelectAll);
+            this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.parrotGradientPanel2);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dgvNewFolder);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.parrotGradientPanel1);
             this.Controls.Add(this.dgvFolder);
             this.Controls.Add(this.metroLabel1);
@@ -333,9 +382,8 @@
             this.Load += new System.EventHandler(this.frmFilter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFolder)).EndInit();
             this.parrotGradientPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNewFolder)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.parrotGradientPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -347,14 +395,15 @@
         private ReaLTaiizor.Controls.MaterialButton btnNewFolder;
         private ReaLTaiizor.Controls.NightButton btnRestart;
         private ReaLTaiizor.Controls.ParrotGradientPanel parrotGradientPanel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgvNewFolder;
         private ReaLTaiizor.Controls.SkyTextBox txtSearch;
         private ReaLTaiizor.Controls.ParrotGradientPanel parrotGradientPanel2;
         private ReaLTaiizor.Controls.SkyTextBox txtNewFolder;
         private ReaLTaiizor.Controls.MaterialButton btnFolder;
         private ReaLTaiizor.Controls.SkyTextBox txtFolder;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnDelete;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel2;
+        private ReaLTaiizor.Controls.MaterialButton btnSelectAll;
+        private ReaLTaiizor.Controls.MaterialButton btnRemoveAll;
+        private ReaLTaiizor.Controls.MetroLabel metroLabel3;
     }
 }

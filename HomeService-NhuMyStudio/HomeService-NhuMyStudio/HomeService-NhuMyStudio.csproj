@@ -134,5 +134,8 @@
   <ItemGroup>
     <None Include="Resources\edit-image.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AnyConv.com__367414274_803314774825615_8341341525306293701_n.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

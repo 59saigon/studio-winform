@@ -32,6 +32,7 @@ namespace HomeService_NhuMyStudio
         private void frmFilter_Load(object sender, EventArgs e)
         {
             dgvFolder.KeyPress += DgvFolder_KeyPress;
+            dgvNewFolder.KeyPress += DgvNewFolder_KeyPress;
             DataGridViewTextBoxColumn fileNameColumn = new DataGridViewTextBoxColumn();
             // Đặt tên cho cột
             fileNameColumn.DataPropertyName = "TenAnh";
@@ -48,73 +49,109 @@ namespace HomeService_NhuMyStudio
 
         }
 
+        private void DgvNewFolder_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                string exportFolderPath = txtNewFolder.Text;
+                if (string.IsNullOrEmpty(exportFolderPath))
+                {
+                    MessageBox.Show("Bạn chưa chọn folder.");
+                }
+                else
+                {
+                    foreach (DataGridViewRow row in dgvNewFolder.SelectedRows)
+                    {
+                        if (!row.IsNewRow && row != null)
+                        {
+                            string fileName = row.Cells[0].Value.ToString();
+                            if (!string.IsNullOrEmpty(fileName))
+                            {
+                                jpgFiles.Add(new FileName { TenAnh = fileName });
+                                showTable(jpgFiles);
+                                dgvNewFolder.Rows.Remove(row);
+                                jpgFiles2.RemoveAll(x => x.TenAnh == fileName);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vui lòng chọn một dòng để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            txtSearch.Text = "";
+
+        }
+
         private void DgvFolder_KeyPress(object sender, KeyPressEventArgs e)
         {
-            selectedRow = dgvFolder.CurrentRow;
-            if (selectedRow == null) { return; }
-
-            string exportFolderPath = txtNewFolder.Text;
-            if (string.IsNullOrEmpty(exportFolderPath))
+            if (e.KeyChar == (char)Keys.Space)
             {
-                MessageBox.Show("Chọn folder cần được copy!");
+                string exportFolderPath = txtNewFolder.Text;
+                if (string.IsNullOrEmpty(exportFolderPath))
+                {
+                    MessageBox.Show("Bạn chưa chọn folder.");
+                }
+                else
+                {
+                    foreach (DataGridViewRow row in dgvFolder.SelectedRows)
+                    {
+                        if (!row.IsNewRow && row != null)
+                        {
+                            // Lấy dữ liệu từ dòng đã chọn
+                            string fileName = row.Cells[0].Value.ToString();
+                            if (fileName == null)
+                            {
+                                MessageBox.Show("Error");
+                                return;
+                            }
+                            if (!string.IsNullOrEmpty(fileName))
+                            {
+                                // Thêm dữ liệu từ dòng đã chọn vào DataGridView khác
+                                // Ví dụ: Thêm vào dgvDestination
+                                //check có tồn tại trong folder mới này ko
+                                string destinationFilePath = Path.Combine(exportFolderPath, fileName);
+                                // Kiểm tra xem tệp đích đã tồn tại hay chưa
+                                if (File.Exists(destinationFilePath))
+                                {
+                                    MessageBox.Show($"Tệp {fileName} này đã tồn tại trong folder mới.");
+                                }
+                                else
+                                {
+                                    FileName file = new FileName { TenAnh = fileName };
+                                    jpgFiles2.Add(file);
+                                    showTable2(jpgFiles2);
+                                    dgvFolder.Rows.Remove(row);
+                                    jpgFiles.RemoveAll(x => x.TenAnh == fileName);
+                                    dgvFolder.Height = jpgFiles.Count * 24;
+                                }
+
+                            }
+
+                            // (Tùy chọn) Xóa dòng đã chọn trong DataGridView nguồn
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vui lòng chọn một dòng để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+
+                }
             }
             else
             {
-                try
-                {
-                    if (selectedRow != null)
-                    {
-                        // Lấy dữ liệu từ dòng đã chọn
-                        string fileName = selectedRow.Cells[0].Value.ToString();
-                        if (fileName == null)
-                        {
-                            return;
-                        }
-                        if (!string.IsNullOrEmpty(fileName))
-                        {
-                            // Thêm dữ liệu từ dòng đã chọn vào DataGridView khác
-                            // Ví dụ: Thêm vào dgvDestination
-                            //check có tồn tại trong folder mới này ko
-                            string destinationFilePath = Path.Combine(exportFolderPath, fileName);
-                            // Kiểm tra xem tệp đích đã tồn tại hay chưa
-                            if (File.Exists(destinationFilePath))
-                            {
-                                MessageBox.Show($"Tệp {fileName} này đã tồn tại trong folder mới.");
-                            }
-                            else
-                            {
-                                FileName file = new FileName { TenAnh = fileName };
-                                jpgFiles2.Add(file);
-                                showTable2(jpgFiles2);
-                                dgvFolder.Rows.Remove(selectedRow);
-                                jpgFiles.RemoveAll(x => x.TenAnh == fileName);
-                                dgvFolder.Height = jpgFiles.Count * 24;
-                            }
-
-                        }
-
-                        // (Tùy chọn) Xóa dòng đã chọn trong DataGridView nguồn
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Vui lòng chọn một dòng để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Vui lòng chọn một dòng để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-
+                MessageBox.Show("Nhấn phím cách để chuyển ảnh.");
             }
+
             txtSearch.Text = "";
         }
         private bool isUserWasOpenNewFolder()
         {
             bool check = false;
 
-            if(txtNewFolder.Text != string.Empty)
+            if (txtNewFolder.Text != string.Empty)
             {
                 check = true;
             }
@@ -122,64 +159,6 @@ namespace HomeService_NhuMyStudio
             return check;
         }
 
-
-        //private void DgvFolder_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    selectedRow = dgvFolder.CurrentRow;
-        //    if (selectedRow == null) { return; }
-
-        //    string exportFolderPath = dgvNewFolder.Text;
-        //    if (string.IsNullOrEmpty(exportFolderPath))
-        //    {
-        //        MessageBox.Show("Chọn folder cần được copy!");
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            if (selectedRow != null)
-        //            {
-        //                // Lấy dữ liệu từ dòng đã chọn
-        //                string fileName = selectedRow.Cells[0].Value.ToString();
-        //                if (fileName == null)
-        //                {
-        //                    return;
-        //                }
-        //                if (!string.IsNullOrEmpty(fileName))
-        //                {
-        //                    // Thêm dữ liệu từ dòng đã chọn vào DataGridView khác
-        //                    // Ví dụ: Thêm vào dgvDestination
-        //                    //check có tồn tại trong folder mới này ko
-        //                    string destinationFilePath = Path.Combine(exportFolderPath, fileName);
-        //                    // Kiểm tra xem tệp đích đã tồn tại hay chưa
-        //                    if (File.Exists(destinationFilePath))
-        //                    {
-        //                        MessageBox.Show($"Tệp {fileName} này đã tồn tại trong folder mới.");
-        //                    }
-        //                    else
-        //                    {
-        //                        FileName file = new FileName { TenAnh = fileName };
-        //                        jpgFiles2.Add(file);
-        //                        showTable2(jpgFiles2);
-        //                        dgvFolder.Rows.Remove(selectedRow);
-        //                        jpgFiles.RemoveAll(x => x.TenAnh == fileName);
-
-        //                    }
-
-        //                }
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("Vui lòng chọn một dòng để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Vui lòng chọn một dòng để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //    }
-        //    txtSearch.Text = "";
-        //}
 
         private void btnNewFolder_Click(object sender, EventArgs e)
         {
@@ -196,7 +175,7 @@ namespace HomeService_NhuMyStudio
                 }
             }
         }
-        
+
         private void btnFolder_Click(object sender, EventArgs e)
         {
             // Hiển thị hộp thoại chọn thư mục
@@ -227,13 +206,6 @@ namespace HomeService_NhuMyStudio
                             });
                         }
                     }
-                    // Hiển thị tên ảnh trong DataGridView
-
-
-
-
-
-                    // Hiển thị số lượng tệp .jpg đã được tìm thấy
                     MessageBox.Show($"Tìm thấy {jpgFiles.Count} tệp .jpg trong thư mục đã chọn.");
 
                     showTable(jpgFiles);
@@ -243,41 +215,21 @@ namespace HomeService_NhuMyStudio
         private void showTable(List<FileName> list)
         {
 
-            dgvFolder = updateDataGridView(dgvFolder);
             bindingSource = new BindingSource();
             bindingSource.DataSource = list;
             dgvFolder.DataSource = null;
             dgvFolder.DataSource = bindingSource;
             dgvFolder.Height = list.Count * 24;
-            //foreach (DataGridViewRow row in dgvFolder.Rows)
-            //{
-            //    if (row.Cells[0].Value != null)
-            //    {
-            //        // Nếu hàng không có giá trị hoặc giá trị là rỗng, bạn có thể thực hiện các hành động tương ứng ở đây
-            //        // Ví dụ: Thiết lập giá trị cho cột HeaderCell là số thứ tự hàng, tương tự như bạn đã làm trước đó
-            //        row.HeaderCell.Value = (row.Index + 1).ToString();
-            //    }
-            //}
             dgvFolder.ClearSelection();
             dgvNewFolder.ClearSelection();
         }
         private void showTable2(List<FileName> list)
         {
-            dgvNewFolder = updateDataGridView(dgvNewFolder);
             bindingSourceV2 = new BindingSource();
             bindingSourceV2.DataSource = list;
             dgvNewFolder.DataSource = null;
             dgvNewFolder.DataSource = bindingSourceV2;
 
-            //foreach (DataGridViewRow row in dgvNewFolder.Rows)
-            //{
-            //    if (row.Cells[0].Value != null)
-            //    {
-            //        // Nếu hàng không có giá trị hoặc giá trị là rỗng, bạn có thể thực hiện các hành động tương ứng ở đây
-            //        // Ví dụ: Thiết lập giá trị cho cột HeaderCell là số thứ tự hàng, tương tự như bạn đã làm trước đó
-            //        row.HeaderCell.Value = (row.Index + 1).ToString();
-            //    }
-            //}
 
             dgvFolder.ClearSelection();
             dgvNewFolder.ClearSelection();
@@ -288,6 +240,14 @@ namespace HomeService_NhuMyStudio
 
             dgv.BorderStyle = BorderStyle.None;
 
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            int maxRows = 12;
+            int rowHeight = dgv.RowTemplate.Height;
+            int headerHeight = dgv.ColumnHeadersHeight;
+            int totalRowHeight = rowHeight * maxRows + headerHeight;
+
+            dgv.MaximumSize = new Size(int.MaxValue, totalRowHeight);
             dgv.AllowUserToAddRows = false;
 
             dgv.AllowUserToDeleteRows = false;
@@ -303,6 +263,17 @@ namespace HomeService_NhuMyStudio
 
             // Bỏ cột kéo lên xuống
             dgv.AllowUserToOrderColumns = false;
+            //dgv.ScrollBars = ScrollBars.;
+
+
+
+
+
+            
+
+
+
+
 
             dgv.ReadOnly = true;
 
@@ -318,7 +289,8 @@ namespace HomeService_NhuMyStudio
             {
                 MessageBox.Show("Bạn chưa chọn folder.");
                 return;
-            } else
+            }
+            else
             {
                 string search = txtSearch.Text;
                 if (jpgFiles.Count > 0)
@@ -334,7 +306,7 @@ namespace HomeService_NhuMyStudio
                 if (list.Count > 0)
                 {
                     showTable(list);
-                    
+
                 }
             }
         }
@@ -358,7 +330,7 @@ namespace HomeService_NhuMyStudio
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtFolder_Click(object sender, EventArgs e)
@@ -368,46 +340,51 @@ namespace HomeService_NhuMyStudio
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem đã chọn thư mục lưu trữ chưa
-            if (string.IsNullOrWhiteSpace(txtNewFolder.Text))
-            {
-                MessageBox.Show("Bạn chưa chọn file để lưu mới tập tin.");
-                return;
-            }
-            if (dgvNewFolder.Rows.Count > 0)
-            {
-                // Lưu đường dẫn thư mục đã chọn
-                string exportFolderPath = txtNewFolder.Text;
+            DialogResult result = MessageBox.Show("Bạn có chắn chắn lưu tại folder này không?", "Xác nhận", MessageBoxButtons.OKCancel);
 
-                // Lưu tất cả các file ảnh .jpg từ DataGridView vào thư mục đã chọn
-                foreach (DataGridViewRow row in dgvNewFolder.Rows)
+            if (result == DialogResult.OK)
+            {
+                // Kiểm tra xem đã chọn thư mục lưu trữ chưa
+                if (string.IsNullOrWhiteSpace(txtNewFolder.Text))
                 {
-                    if (row.Cells[0].Value != null)
+                    MessageBox.Show("Bạn chưa chọn folder để lưu mới tập tin.");
+                    return;
+                }
+                if (dgvNewFolder.Rows.Count > 0)
+                {
+                    // Lưu đường dẫn thư mục đã chọn
+                    string exportFolderPath = txtNewFolder.Text;
+
+                    // Lưu tất cả các file ảnh .jpg từ DataGridView vào thư mục đã chọn
+                    foreach (DataGridViewRow row in dgvNewFolder.Rows)
                     {
-
-                        string fileName = row.Cells[0].Value.ToString(); // Điều chỉnh tên cột nếu cần
-
-                        // Kiểm tra xem tệp có tồn tại không trước khi sao chép
-                        string sourceFilePath = Path.Combine(txtFolder.Text, fileName);
-                        if (File.Exists(sourceFilePath))
+                        if (row.Cells[0].Value != null)
                         {
-                            string destinationFilePath = Path.Combine(exportFolderPath, fileName);
-                            File.Copy(sourceFilePath, destinationFilePath);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"File '{fileName}' không tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            string fileName = row.Cells[0].Value.ToString(); // Điều chỉnh tên cột nếu cần
+
+                            // Kiểm tra xem tệp có tồn tại không trước khi sao chép
+                            string sourceFilePath = Path.Combine(txtFolder.Text, fileName);
+                            if (File.Exists(sourceFilePath))
+                            {
+                                string destinationFilePath = Path.Combine(exportFolderPath, fileName);
+                                File.Copy(sourceFilePath, destinationFilePath);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"File '{fileName}' không tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
+                    // Thông báo khi hoàn thành
+                    MessageBox.Show("Tất cả các tệp ảnh đã được sao chép vào thư mục được chọn.", "Hoàn thành", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SearchAll();
+                    clearEXPORTAfterSave();
                 }
-                // Thông báo khi hoàn thành
-                MessageBox.Show("Tất cả các tệp ảnh đã được sao chép vào thư mục được chọn.", "Hoàn thành", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                SearchAll();
-                clearEXPORTAfterSave();
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn ảnh để thêm vào folder mới này");
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn ảnh để thêm vào folder mới này");
+                }
             }
         }
         private void clearEXPORTAfterSave()
@@ -418,34 +395,152 @@ namespace HomeService_NhuMyStudio
             // Vô hiệu hóa checkbox trên các dòng đã chọn trong dgvFolder
 
         }
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            selectedRowV2 = dgvNewFolder.CurrentRow;
-            if (selectedRowV2 == null) { return; }
-            if (selectedRowV2 != null)
-            {
-                string fileName = selectedRowV2.Cells[0].Value.ToString();
-                if (!string.IsNullOrEmpty(fileName))
-                {
-                    jpgFiles.Add(new FileName { TenAnh = fileName });
-                    showTable(jpgFiles);
-                    dgvNewFolder.Rows.Remove(selectedRowV2);
-                    jpgFiles2.RemoveAll(x => x.TenAnh == fileName);
-                }
-            }
-        }
+
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
-            dgvFolder.Rows.Clear();
-            dgvNewFolder.Rows.Clear();
-            txtFolder.Text = string.Empty;
-            txtNewFolder.Text = string.Empty;
+            DialogResult result = MessageBox.Show("Bạn có muốn khởi động lại không?", "Xác nhận", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                dgvFolder.Rows.Clear();
+                dgvNewFolder.Rows.Clear();
+                txtFolder.Text = string.Empty;
+                txtNewFolder.Text = string.Empty;
+            }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn tiếp tục không?", "Xác nhận", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                // Người dùng đã chọn OK, thực hiện các hành động tiếp theo ở đây
+                bool check = false;
+                bool checkV2 = false;
+                bool checkV3 = false;
+                while (dgvFolder.Rows.Count > 0 && check == false && checkV2 == false && checkV3 == false)
+                {
+                    string exportFolderPath = txtNewFolder.Text;
+
+                    if (string.IsNullOrEmpty(exportFolderPath))
+                    {
+                        check = true;
+                    }
+                    else
+                    {
+                        foreach (DataGridViewRow row in dgvFolder.Rows)
+                        {
+                            if (row != null)
+                            {
+                                // Lấy dữ liệu từ dòng đã chọn
+                                string fileName = row.Cells[0].Value.ToString();
+                                if (!string.IsNullOrEmpty(fileName))
+                                {
+                                    // Thêm dữ liệu từ dòng đã chọn vào DataGridView khác
+                                    // Ví dụ: Thêm vào dgvDestination
+                                    //check có tồn tại trong folder mới này ko
+                                    string destinationFilePath = Path.Combine(exportFolderPath, fileName);
+                                    // Kiểm tra xem tệp đích đã tồn tại hay chưa
+                                    if (File.Exists(destinationFilePath))
+                                    {
+                                        checkV2 = true;
+                                    }
+                                    else
+                                    {
+                                        FileName file = new FileName { TenAnh = fileName };
+                                        jpgFiles2.Add(file);
+                                        showTable2(jpgFiles2);
+                                        dgvFolder.Rows.Remove(row);
+                                        jpgFiles.RemoveAll(x => x.TenAnh == fileName);
+                                        dgvFolder.Height = jpgFiles.Count * 24;
+                                        checkV2 = false;
+                                    }
+
+                                }
+
+                                // (Tùy chọn) Xóa dòng đã chọn trong DataGridView nguồn
+                                checkV3 = false;
+                            }
+                            else
+                            {
+                                checkV3 = true;
+                            }
+                        }
+
+                        check = false;
+                    }
+                }
+                if (checkV2)
+                {
+                    MessageBox.Show("Có những File folder cũ đã tồn tại trong folder mới");
+                }
+                if (checkV3)
+                {
+                    MessageBox.Show("Vui lòng chọn một dòng để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                if (check)
+                {
+                    MessageBox.Show("Bạn chưa chọn folder.");
+                }
+
+                txtSearch.Text = "";
+            }
+
+        }
+
+
+
+        private void btnRemoveAll_Click(object sender, EventArgs e)
+        {
+            bool check = false;
+            bool checkV2 = false;
+
+            while (dgvNewFolder.Rows.Count > 0 && check == false && checkV2 == false)
+            {
+                string exportFolderPath = txtNewFolder.Text;
+                if (string.IsNullOrEmpty(exportFolderPath))
+                {
+                    check = true;
+                }
+                else
+                {
+                    //MessageBox.Show($"{dgvNewFolder.Rows.Count}");
+                    foreach (DataGridViewRow row in dgvNewFolder.Rows)
+                    {
+                        if (row != null)
+                        {
+                            string fileName = row.Cells[0].Value.ToString();
+                            if (!string.IsNullOrEmpty(fileName))
+                            {
+                                jpgFiles.Add(new FileName { TenAnh = fileName });
+                                showTable(jpgFiles);
+                                dgvNewFolder.Rows.Remove(row);
+                                jpgFiles2.RemoveAll(x => x.TenAnh == fileName);
+                                checkV2 = false;
+                            }
+                        }
+                        else
+                        {
+                            checkV2 = true;
+                        }
+                    }
+                    check = false;
+                }
+            }
+            if (checkV2)
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (check)
+            {
+                MessageBox.Show("Bạn chưa chọn folder.");
+            }
+
+            txtSearch.Text = "";
         }
     }
 }

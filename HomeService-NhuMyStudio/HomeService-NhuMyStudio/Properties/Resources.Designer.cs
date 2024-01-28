@@ -63,6 +63,16 @@ namespace HomeService_NhuMyStudio.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AnyConv_com__367414274_803314774825615_8341341525306293701_n {
+            get {
+                object obj = ResourceManager.GetObject("AnyConv.com__367414274_803314774825615_8341341525306293701_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap change {
             get {
                 object obj = ResourceManager.GetObject("change", resourceCulture);
