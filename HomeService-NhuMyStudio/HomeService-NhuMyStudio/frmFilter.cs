@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -47,7 +48,12 @@ namespace HomeService_NhuMyStudio
             dgvFolder = updateDataGridView(dgvFolder);
             dgvNewFolder = updateDataGridView(dgvNewFolder);
 
+
+            checkEnableAfterSelectFindFolder();
+            checkEnableAfterSelectFindNewFolder();
         }
+
+  
 
         private void DgvNewFolder_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -174,6 +180,7 @@ namespace HomeService_NhuMyStudio
                     txtNewFolder.Text = folderBrowserDialog.SelectedPath;
                 }
             }
+            checkEnableAfterSelectFindNewFolder();
         }
 
         private void btnFolder_Click(object sender, EventArgs e)
@@ -211,6 +218,7 @@ namespace HomeService_NhuMyStudio
                     showTable(jpgFiles);
                 }
             }
+            checkEnableAfterSelectFindFolder();
         }
         private void showTable(List<FileName> list)
         {
@@ -407,6 +415,8 @@ namespace HomeService_NhuMyStudio
                 dgvNewFolder.Rows.Clear();
                 txtFolder.Text = string.Empty;
                 txtNewFolder.Text = string.Empty;
+                checkEnableAfterSelectFindNewFolder();
+                checkEnableAfterSelectFindFolder();
             }
         }
 
@@ -541,6 +551,56 @@ namespace HomeService_NhuMyStudio
             }
 
             txtSearch.Text = "";
+        }
+
+        private void btnReviewFolder_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem đã có đường dẫn thư mục được chọn từ trước không
+            if (!string.IsNullOrEmpty(txtFolder.Text))
+            {
+                // Mở thư mục được chọn trên máy tính của bạn
+                Process.Start(txtFolder.Text);
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa chọn thư mục nào để review.");
+            }
+        }
+
+        private void btnReviewNewFolder_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra xem đã có đường dẫn thư mục được chọn từ trước không
+            if (!string.IsNullOrEmpty(txtNewFolder.Text))
+            {
+                // Mở thư mục được chọn trên máy tính của bạn
+                Process.Start(txtNewFolder.Text);
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa chọn thư mục nào để review.");
+            }
+        }
+        private void checkEnableAfterSelectFindFolder()
+        {
+            if(txtFolder.Text == string.Empty)
+            {
+                btnReviewFolder.Enabled = false;
+            }
+            else
+            {
+                btnReviewFolder.Enabled = true;
+            }
+        }
+        private void checkEnableAfterSelectFindNewFolder()
+        {
+            if (txtNewFolder.Text == string.Empty)
+            {
+                btnReviewNewFolder.Enabled = false;
+            }
+            else
+            {
+                btnReviewNewFolder.Enabled = true;
+            }
         }
     }
 }

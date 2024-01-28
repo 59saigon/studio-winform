@@ -44,6 +44,8 @@
             this.btnSelectAll = new ReaLTaiizor.Controls.MaterialButton();
             this.btnRemoveAll = new ReaLTaiizor.Controls.MaterialButton();
             this.metroLabel3 = new ReaLTaiizor.Controls.MetroLabel();
+            this.btnReviewFolder = new ReaLTaiizor.Controls.MaterialButton();
+            this.btnReviewNewFolder = new ReaLTaiizor.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFolder)).BeginInit();
             this.parrotGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNewFolder)).BeginInit();
@@ -225,6 +227,8 @@
             this.parrotGradientPanel2.BottomLeft = System.Drawing.Color.LightBlue;
             this.parrotGradientPanel2.BottomRight = System.Drawing.Color.LightPink;
             this.parrotGradientPanel2.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            this.parrotGradientPanel2.Controls.Add(this.btnReviewNewFolder);
+            this.parrotGradientPanel2.Controls.Add(this.btnReviewFolder);
             this.parrotGradientPanel2.Controls.Add(this.btnFolder);
             this.parrotGradientPanel2.Controls.Add(this.btnNewFolder);
             this.parrotGradientPanel2.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
@@ -256,7 +260,7 @@
             this.btnFolder.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnFolder.Size = new System.Drawing.Size(135, 36);
             this.btnFolder.TabIndex = 4;
-            this.btnFolder.Text = "Mở folder";
+            this.btnFolder.Text = "Tìm thư mục";
             this.btnFolder.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnFolder.UseAccentColor = false;
             this.btnFolder.UseVisualStyleBackColor = true;
@@ -358,6 +362,50 @@
             this.metroLabel3.ThemeAuthor = "Taiizor";
             this.metroLabel3.ThemeName = "MetroLight";
             // 
+            // btnReviewFolder
+            // 
+            this.btnReviewFolder.AutoSize = false;
+            this.btnReviewFolder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnReviewFolder.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnReviewFolder.Depth = 0;
+            this.btnReviewFolder.HighEmphasis = true;
+            this.btnReviewFolder.Icon = null;
+            this.btnReviewFolder.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            this.btnReviewFolder.Location = new System.Drawing.Point(168, 6);
+            this.btnReviewFolder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnReviewFolder.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            this.btnReviewFolder.Name = "btnReviewFolder";
+            this.btnReviewFolder.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnReviewFolder.Size = new System.Drawing.Size(135, 36);
+            this.btnReviewFolder.TabIndex = 9;
+            this.btnReviewFolder.Text = "Xem thư mục";
+            this.btnReviewFolder.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnReviewFolder.UseAccentColor = false;
+            this.btnReviewFolder.UseVisualStyleBackColor = true;
+            this.btnReviewFolder.Click += new System.EventHandler(this.btnReviewFolder_Click);
+            // 
+            // btnReviewNewFolder
+            // 
+            this.btnReviewNewFolder.AutoSize = false;
+            this.btnReviewNewFolder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnReviewNewFolder.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnReviewNewFolder.Depth = 0;
+            this.btnReviewNewFolder.HighEmphasis = true;
+            this.btnReviewNewFolder.Icon = null;
+            this.btnReviewNewFolder.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            this.btnReviewNewFolder.Location = new System.Drawing.Point(634, 6);
+            this.btnReviewNewFolder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnReviewNewFolder.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            this.btnReviewNewFolder.Name = "btnReviewNewFolder";
+            this.btnReviewNewFolder.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnReviewNewFolder.Size = new System.Drawing.Size(135, 36);
+            this.btnReviewNewFolder.TabIndex = 10;
+            this.btnReviewNewFolder.Text = "Xem thư mục";
+            this.btnReviewNewFolder.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnReviewNewFolder.UseAccentColor = false;
+            this.btnReviewNewFolder.UseVisualStyleBackColor = true;
+            this.btnReviewNewFolder.Click += new System.EventHandler(this.btnReviewNewFolder_Click);
+            // 
             // frmFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -405,5 +453,7 @@
         private ReaLTaiizor.Controls.MaterialButton btnSelectAll;
         private ReaLTaiizor.Controls.MaterialButton btnRemoveAll;
         private ReaLTaiizor.Controls.MetroLabel metroLabel3;
+        private ReaLTaiizor.Controls.MaterialButton btnReviewFolder;
+        private ReaLTaiizor.Controls.MaterialButton btnReviewNewFolder;
     }
 }
