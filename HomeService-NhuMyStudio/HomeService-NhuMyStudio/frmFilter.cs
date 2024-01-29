@@ -23,6 +23,11 @@ namespace HomeService_NhuMyStudio
         private DataGridViewRow selectedRow;
         private DataGridViewRow selectedRowV2;
 
+        private string filesDot = null;
+        private string mode = null;
+
+
+
         public frmFilter()
         {
             InitializeComponent();
@@ -53,7 +58,7 @@ namespace HomeService_NhuMyStudio
             checkEnableAfterSelectFindNewFolder();
         }
 
-  
+
 
         private void DgvNewFolder_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -197,28 +202,66 @@ namespace HomeService_NhuMyStudio
                     txtFolder.Text = folderBrowserDialog.SelectedPath.ToString();
                     // Lấy danh sách tất cả các tệp trong thư mục
                     string[] files = Directory.GetFiles(folderBrowserDialog.SelectedPath);
-
+                    if(filesDot == null)
+                    {
+                        MessageBox.Show("Bạn chưa chọn .file trong menu.");
+                    }
+                    if (filesDot == string.Empty)
+                    {
+                        selectAllFiles(files);
+                        MessageBox.Show($"Tìm thấy {jpgFiles.Count} tệp {filesDot} trong thư mục đã chọn.");
+                        showTable(jpgFiles);
+                    }
+                    else if(!string.IsNullOrWhiteSpace(filesDot))
+                    {
+                        selectOneFiles(files);
+                        MessageBox.Show($"Tìm thấy {jpgFiles.Count} tệp {filesDot} trong thư mục đã chọn.");
+                        showTable(jpgFiles);
+                    }
 
                     // Lọc ra các tệp có đuôi mở rộng là .jpg
-                    jpgFiles = new List<FileName>();
-                    foreach (string file in files)
-                    {
-                        if (Path.GetExtension(file).Equals(".jpg", StringComparison.OrdinalIgnoreCase))
-                        {
-                            // Lấy chỉ tên của tệp và thêm vào danh sách jpgFiles
-                            string fileName = Path.GetFileName(file);
-                            jpgFiles.Add(new FileName
-                            {
-                                TenAnh = fileName,
-                            });
-                        }
-                    }
-                    MessageBox.Show($"Tìm thấy {jpgFiles.Count} tệp .jpg trong thư mục đã chọn.");
 
-                    showTable(jpgFiles);
+
+
+
                 }
             }
             checkEnableAfterSelectFindFolder();
+        }
+        private void selectAllFiles(string[] files)
+        {
+            jpgFiles = new List<FileName>();
+            foreach (string file in files)
+            {
+                if (Path.GetExtension(file).Equals(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                    Path.GetExtension(file).Equals(".cr3", StringComparison.OrdinalIgnoreCase) ||
+                    Path.GetExtension(file).Equals(".png", StringComparison.OrdinalIgnoreCase) ||
+                    Path.GetExtension(file).Equals(".jpeg", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Lấy chỉ tên của tệp và thêm vào danh sách jpgFiles
+                    string fileName = Path.GetFileName(file);
+                    jpgFiles.Add(new FileName
+                    {
+                        TenAnh = fileName,
+                    });
+                }
+            }
+        }
+        private void selectOneFiles(string[] files)
+        {
+            jpgFiles = new List<FileName>();
+            foreach (string file in files)
+            {
+                if (Path.GetExtension(file).Equals(filesDot, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Lấy chỉ tên của tệp và thêm vào danh sách jpgFiles
+                    string fileName = Path.GetFileName(file);
+                    jpgFiles.Add(new FileName
+                    {
+                        TenAnh = fileName,
+                    });
+                }
+            }
         }
         private void showTable(List<FileName> list)
         {
@@ -277,7 +320,7 @@ namespace HomeService_NhuMyStudio
 
 
 
-            
+
 
 
 
@@ -376,7 +419,22 @@ namespace HomeService_NhuMyStudio
                             if (File.Exists(sourceFilePath))
                             {
                                 string destinationFilePath = Path.Combine(exportFolderPath, fileName);
-                                File.Copy(sourceFilePath, destinationFilePath);
+                                if (string.IsNullOrEmpty(mode))
+                                {
+                                    MessageBox.Show("Bạn chưa chọn chế độ trong menu");
+                                    break;
+                                } else
+                                if (mode.Equals("copy"))
+                                {
+                                    File.Copy(sourceFilePath, destinationFilePath);
+
+                                }
+                                else if(mode.Equals("cut"))
+                                {
+                                    File.Move(sourceFilePath, destinationFilePath);
+
+                                }
+
                             }
                             else
                             {
@@ -385,9 +443,12 @@ namespace HomeService_NhuMyStudio
                         }
                     }
                     // Thông báo khi hoàn thành
-                    MessageBox.Show("Tất cả các tệp ảnh đã được sao chép vào thư mục được chọn.", "Hoàn thành", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    SearchAll();
-                    clearEXPORTAfterSave();
+                    if (!string.IsNullOrEmpty(mode))
+                    {
+                        MessageBox.Show("Tất cả các tệp ảnh đã được sao chép vào thư mục được chọn.", "Hoàn thành", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SearchAll();
+                        clearEXPORTAfterSave();
+                    }
                 }
                 else
                 {
@@ -582,7 +643,7 @@ namespace HomeService_NhuMyStudio
         }
         private void checkEnableAfterSelectFindFolder()
         {
-            if(txtFolder.Text == string.Empty)
+            if (txtFolder.Text == string.Empty)
             {
                 btnReviewFolder.Enabled = false;
             }
@@ -601,6 +662,66 @@ namespace HomeService_NhuMyStudio
             {
                 btnReviewNewFolder.Enabled = true;
             }
+        }
+
+        private void btnCr3_Click(object sender, EventArgs e)
+        {
+            // Bỏ chọn tất cả các button khác
+            btnJpg.Checked = false;
+            btnAll.Checked = false;
+
+            // Đặt button hiện tại thành đã chọn
+            btnCr3.Checked = true;
+
+            // Cập nhật giá trị filesDot
+            filesDot = ".cr3";
+        }
+
+        private void btnJpg_Click(object sender, EventArgs e)
+        {
+            // Bỏ chọn tất cả các button khác
+            btnCr3.Checked = false;
+            btnAll.Checked = false;
+
+            // Đặt button hiện tại thành đã chọn
+            btnJpg.Checked = true;
+
+            // Cập nhật giá trị filesDot
+            filesDot = ".jpg";
+        }
+
+        private void btnAll_Click(object sender, EventArgs e)
+        {
+            // Bỏ chọn tất cả các button khác
+            btnCr3.Checked = false;
+            btnJpg.Checked = false;
+
+            // Đặt button hiện tại thành đã chọn
+            btnAll.Checked = true;
+
+            // Cập nhật giá trị filesDot
+            filesDot = "";
+        }
+
+        private void btnFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            btnCut.Checked = false;
+            mode = "copy";
+
+            btnCopy.Checked = true;
+        }
+
+        private void btnCut_Click(object sender, EventArgs e)
+        {
+            btnCopy.Checked = false;
+            mode = "cut";
+
+            btnCut.Checked = true;
         }
     }
 }
