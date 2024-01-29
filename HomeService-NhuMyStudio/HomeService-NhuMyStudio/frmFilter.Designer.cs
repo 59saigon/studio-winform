@@ -31,7 +31,6 @@
             this.dgvFolder = new System.Windows.Forms.DataGridView();
             this.btnSave = new ReaLTaiizor.Controls.NightButton();
             this.btnRestart = new ReaLTaiizor.Controls.NightButton();
-            this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
             this.btnReviewNewFolder = new ReaLTaiizor.Controls.MaterialButton();
             this.btnNewFolder = new ReaLTaiizor.Controls.MaterialButton();
             this.btnReviewFolder = new ReaLTaiizor.Controls.MaterialButton();
@@ -55,7 +54,6 @@
             this.btnCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCut = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFolder)).BeginInit();
-            this.parrotGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNewFolder)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +79,7 @@
             this.btnSave.HoverBackColor = System.Drawing.Color.MediumSpringGreen;
             this.btnSave.HoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnSave.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            this.btnSave.Location = new System.Drawing.Point(683, 491);
+            this.btnSave.Location = new System.Drawing.Point(649, 491);
             this.btnSave.MinimumSize = new System.Drawing.Size(144, 47);
             this.btnSave.Name = "btnSave";
             this.btnSave.NormalBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -105,7 +103,7 @@
             this.btnRestart.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnRestart.HoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnRestart.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            this.btnRestart.Location = new System.Drawing.Point(25, 491);
+            this.btnRestart.Location = new System.Drawing.Point(26, 491);
             this.btnRestart.MinimumSize = new System.Drawing.Size(144, 47);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.NormalBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -119,34 +117,6 @@
             this.btnRestart.Text = "Khởi động lại";
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
-            // parrotGradientPanel1
-            // 
-            this.parrotGradientPanel1.BottomLeft = System.Drawing.Color.LightBlue;
-            this.parrotGradientPanel1.BottomRight = System.Drawing.Color.LightPink;
-            this.parrotGradientPanel1.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            this.parrotGradientPanel1.Controls.Add(this.btnReviewNewFolder);
-            this.parrotGradientPanel1.Controls.Add(this.btnNewFolder);
-            this.parrotGradientPanel1.Controls.Add(this.btnReviewFolder);
-            this.parrotGradientPanel1.Controls.Add(this.btnFolder);
-            this.parrotGradientPanel1.Controls.Add(this.metroLabel4);
-            this.parrotGradientPanel1.Controls.Add(this.metroLabel3);
-            this.parrotGradientPanel1.Controls.Add(this.btnSave);
-            this.parrotGradientPanel1.Controls.Add(this.btnRestart);
-            this.parrotGradientPanel1.Controls.Add(this.metroLabel2);
-            this.parrotGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.parrotGradientPanel1.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
-            this.parrotGradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.parrotGradientPanel1.Name = "parrotGradientPanel1";
-            this.parrotGradientPanel1.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            this.parrotGradientPanel1.PrimerColor = System.Drawing.Color.White;
-            this.parrotGradientPanel1.Size = new System.Drawing.Size(917, 550);
-            this.parrotGradientPanel1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            this.parrotGradientPanel1.Style = ReaLTaiizor.Controls.ParrotGradientPanel.GradientStyle.Corners;
-            this.parrotGradientPanel1.TabIndex = 11;
-            this.parrotGradientPanel1.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.parrotGradientPanel1.TopLeft = System.Drawing.Color.DeepSkyBlue;
-            this.parrotGradientPanel1.TopRight = System.Drawing.Color.Fuchsia;
-            // 
             // btnReviewNewFolder
             // 
             this.btnReviewNewFolder.AutoSize = false;
@@ -156,7 +126,7 @@
             this.btnReviewNewFolder.HighEmphasis = true;
             this.btnReviewNewFolder.Icon = null;
             this.btnReviewNewFolder.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btnReviewNewFolder.Location = new System.Drawing.Point(634, 35);
+            this.btnReviewNewFolder.Location = new System.Drawing.Point(673, 49);
             this.btnReviewNewFolder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnReviewNewFolder.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.btnReviewNewFolder.Name = "btnReviewNewFolder";
@@ -178,7 +148,7 @@
             this.btnNewFolder.HighEmphasis = true;
             this.btnNewFolder.Icon = null;
             this.btnNewFolder.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btnNewFolder.Location = new System.Drawing.Point(491, 35);
+            this.btnNewFolder.Location = new System.Drawing.Point(530, 49);
             this.btnNewFolder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNewFolder.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.btnNewFolder.Name = "btnNewFolder";
@@ -200,7 +170,7 @@
             this.btnReviewFolder.HighEmphasis = true;
             this.btnReviewFolder.Icon = null;
             this.btnReviewFolder.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btnReviewFolder.Location = new System.Drawing.Point(168, 35);
+            this.btnReviewFolder.Location = new System.Drawing.Point(218, 49);
             this.btnReviewFolder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnReviewFolder.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.btnReviewFolder.Name = "btnReviewFolder";
@@ -222,7 +192,7 @@
             this.btnFolder.HighEmphasis = true;
             this.btnFolder.Icon = null;
             this.btnFolder.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.btnFolder.Location = new System.Drawing.Point(25, 35);
+            this.btnFolder.Location = new System.Drawing.Point(75, 49);
             this.btnFolder.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnFolder.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             this.btnFolder.Name = "btnFolder";
@@ -239,7 +209,7 @@
             // 
             this.metroLabel4.Font = new System.Drawing.Font("Cascadia Mono", 18.27692F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroLabel4.IsDerivedStyle = true;
-            this.metroLabel4.Location = new System.Drawing.Point(146, 107);
+            this.metroLabel4.Location = new System.Drawing.Point(49, 105);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(342, 52);
             this.metroLabel4.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -253,7 +223,7 @@
             // 
             this.metroLabel3.Font = new System.Drawing.Font("Cascadia Mono", 18.27692F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroLabel3.IsDerivedStyle = true;
-            this.metroLabel3.Location = new System.Drawing.Point(554, 107);
+            this.metroLabel3.Location = new System.Drawing.Point(563, 105);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(342, 52);
             this.metroLabel3.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -267,7 +237,7 @@
             // 
             this.metroLabel2.Font = new System.Drawing.Font("Segoe UI", 7.753846F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroLabel2.IsDerivedStyle = true;
-            this.metroLabel2.Location = new System.Drawing.Point(25, 443);
+            this.metroLabel2.Location = new System.Drawing.Point(25, 446);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(327, 39);
             this.metroLabel2.Style = ReaLTaiizor.Enum.Metro.Style.Light;
@@ -408,7 +378,7 @@
             this.btnMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(917, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(917, 32);
             this.menuStrip1.TabIndex = 27;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -482,21 +452,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MistyRose;
             this.ClientSize = new System.Drawing.Size(917, 550);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.btnRestart);
+            this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.txtNewFolder);
+            this.Controls.Add(this.btnNewFolder);
             this.Controls.Add(this.btnRemoveAll);
             this.Controls.Add(this.txtFolder);
+            this.Controls.Add(this.btnFolder);
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dgvNewFolder);
             this.Controls.Add(this.dgvFolder);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.parrotGradientPanel1);
+            this.Controls.Add(this.metroLabel4);
+            this.Controls.Add(this.btnReviewFolder);
+            this.Controls.Add(this.btnReviewNewFolder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmFilter";
             this.Text = "frmFilter";
             this.Load += new System.EventHandler(this.frmFilter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFolder)).EndInit();
-            this.parrotGradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNewFolder)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -509,7 +486,6 @@
         private System.Windows.Forms.DataGridView dgvFolder;
         private ReaLTaiizor.Controls.NightButton btnSave;
         private ReaLTaiizor.Controls.NightButton btnRestart;
-        private ReaLTaiizor.Controls.ParrotGradientPanel parrotGradientPanel1;
         private System.Windows.Forms.DataGridView dgvNewFolder;
         private ReaLTaiizor.Controls.SkyTextBox txtSearch;
         private ReaLTaiizor.Controls.SkyTextBox txtNewFolder;

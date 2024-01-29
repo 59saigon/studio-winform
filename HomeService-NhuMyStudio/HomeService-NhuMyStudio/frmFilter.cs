@@ -183,9 +183,10 @@ namespace HomeService_NhuMyStudio
                 {
                     // Set lên txt
                     txtNewFolder.Text = folderBrowserDialog.SelectedPath;
+                    checkEnableAfterSelectFindNewFolder();
                 }
             }
-            checkEnableAfterSelectFindNewFolder();
+            
         }
 
         private void btnFolder_Click(object sender, EventArgs e)
@@ -219,14 +220,11 @@ namespace HomeService_NhuMyStudio
                         showTable(jpgFiles);
                     }
 
-                    // Lọc ra các tệp có đuôi mở rộng là .jpg
 
-
-
-
+                    checkEnableAfterSelectFindFolder();
                 }
             }
-            checkEnableAfterSelectFindFolder();
+            
         }
         private void selectAllFiles(string[] files)
         {
@@ -643,8 +641,9 @@ namespace HomeService_NhuMyStudio
         }
         private void checkEnableAfterSelectFindFolder()
         {
-            if (txtFolder.Text == string.Empty)
+            if (txtFolder.Text == string.Empty || filesDot == null)
             {
+                txtFolder.Text = string.Empty;
                 btnReviewFolder.Enabled = false;
             }
             else
@@ -654,8 +653,9 @@ namespace HomeService_NhuMyStudio
         }
         private void checkEnableAfterSelectFindNewFolder()
         {
-            if (txtNewFolder.Text == string.Empty)
+            if (txtNewFolder.Text == string.Empty || filesDot == null)
             {
+                txtNewFolder.Text = string.Empty;
                 btnReviewNewFolder.Enabled = false;
             }
             else
