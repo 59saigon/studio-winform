@@ -55,7 +55,7 @@ namespace HomeService_NhuMyStudio
 
 
             checkEnableAfterSelectFindFolder();
-            checkEnableAfterSelectFindNewFolder();
+            checkEnableAfterFindNewFolder();
         }
 
 
@@ -183,7 +183,7 @@ namespace HomeService_NhuMyStudio
                 {
                     // Set lên txt
                     txtNewFolder.Text = folderBrowserDialog.SelectedPath;
-                    checkEnableAfterSelectFindNewFolder();
+                    checkEnableAfterFindNewFolder();
                 }
             }
             
@@ -289,6 +289,7 @@ namespace HomeService_NhuMyStudio
 
             dgv.BorderStyle = BorderStyle.None;
 
+            //important
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             int maxRows = 12;
@@ -474,7 +475,7 @@ namespace HomeService_NhuMyStudio
                 dgvNewFolder.Rows.Clear();
                 txtFolder.Text = string.Empty;
                 txtNewFolder.Text = string.Empty;
-                checkEnableAfterSelectFindNewFolder();
+                checkEnableAfterFindNewFolder();
                 checkEnableAfterSelectFindFolder();
             }
         }
@@ -651,7 +652,7 @@ namespace HomeService_NhuMyStudio
                 btnReviewFolder.Enabled = true;
             }
         }
-        private void checkEnableAfterSelectFindNewFolder()
+        private void checkEnableAfterFindNewFolder()
         {
             if (txtNewFolder.Text == string.Empty || filesDot == null)
             {
@@ -722,6 +723,16 @@ namespace HomeService_NhuMyStudio
             mode = "cut";
 
             btnCut.Checked = true;
+        }
+
+        private void dgvNewFolder_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cr3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

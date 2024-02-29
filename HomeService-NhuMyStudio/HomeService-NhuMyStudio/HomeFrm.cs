@@ -61,7 +61,6 @@ namespace HomeService_NhuMyStudio
 
         private void HomeFrm_Load(object sender, EventArgs e)
         {
-
         }
 
         private void btnChangeFiles_Click(object sender, EventArgs e)
@@ -71,22 +70,59 @@ namespace HomeService_NhuMyStudio
 
         private void btnRename_Click(object sender, EventArgs e)
         {
-
+            //CloseEveryOrder();
+            if (renameForm == null)
+            {
+                
+                renameForm = new frmRename();
+                renameForm.FormClosed += RenameForm_FormClosed;
+                renameForm.MdiParent = this;
+                renameForm.Dock = DockStyle.Fill;
+                renameForm.Show();
+                if (filterForm != null)
+                {
+                    filterForm.Close();
+                }
+            }
+            
+        }
+        private void CloseEveryOrder()
+        {
+            if (renameForm !=null)
+            {
+                filterForm.Close();
+            }
+            if (renameForm.Visible)
+            {
+                renameForm.Close();
+            }
         }
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            if(filterForm == null)
+            //CloseEveryOrder();
+            if (filterForm == null)
             {
+                
                 filterForm = new frmFilter();
                 filterForm.FormClosed += FilterForm_FormClosed;
+                
                 filterForm.MdiParent = this;
                 filterForm.Dock = DockStyle.Fill;
+                
+
+
                 filterForm.Show();
+                if(renameForm != null)
+                {
+                    renameForm.Close();
+                }
             }
-            else
-            {
-                filterForm.Activate();
-            }
+            
+        }
+
+        private void RenameForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            renameForm = null;
         }
 
         private void FilterForm_FormClosed(object sender, FormClosedEventArgs e)
